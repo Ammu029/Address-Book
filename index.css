@@ -52,6 +52,8 @@ nav img{
 }
 #people-list{
     color: #36332f;
+    overflow: overlay;
+    height: 375px;
 }
 section{
     margin-top: 15px
@@ -81,7 +83,7 @@ section ul{
     border: 1px solid grey;
     
 }
-.add-contact-Popup{
+.add_contact_popup{
     /* display: grid;
     grid-template-columns: auto auto auto; */
     border: 1px solid black;
@@ -98,6 +100,8 @@ section ul{
     cursor: pointer;
     width: 3%;
     height: 4%;
+    border: none;
+    background-color: white;
 }
 .details{
     width: 80%;
@@ -107,39 +111,48 @@ section ul{
     display: flex;
     justify-content:space-between;
 }
-.name{
+.detail_style{
     margin-bottom: 4%;
 }
-.email{
-    margin-bottom: 4%;
-}
-.website{
-    margin-bottom: 4%;
+.detail_style input{
+    width: 100%; 
+    height: 25px; 
+    margin-top: 1%;
 }
 .mob{
-    margin-bottom: 4%;
     width: 47%;
 }
 .landline{
-    margin-bottom: 4%;
     width: 47%;
 }
-.addr{
-    margin-bottom: 4%;
-}
-
 .inputStyle{
     height: 25px;
 }
-.add-contact-Popup div button{
-    background-color: #529d04;
-    width: 18%;
-    height: 25px;
-    float: right;
-    border: none;
-    color: white;
+.btn{
+    margin-left: 82%;
 }
 
+.btn input{
+    border: none;
+    background-color: none;
+    color: white;
+    background-color: #529d04;
+    width: 100%;
+    height: 25px;
+} 
+.btn input:hover{
+    cursor: pointer;
+    background-color:  #72d706;;
+}
+.update_contact_popup{
+    border: 1px solid black;
+    width: 100%;
+    padding: 5%;
+    /* column-gap: 20px;
+    row-gap: 15px; */
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
+    height: auto;
+}
 .view-contact-details{
     display: flex;
     margin-top: 5%;
@@ -174,8 +187,16 @@ section ul{
     display: flex;
     font-size: 12px;
 }
+
+.style a{
+    cursor: pointer;
+}
+
+.style a:hover{
+    text-decoration:underline;
+}
 @media (width<=700px){
-    .add-contact-Popup{ 
+    .add_contact_popup{ 
     grid-template-columns: auto auto;  
     }
 }

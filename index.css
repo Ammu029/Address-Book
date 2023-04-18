@@ -190,6 +190,7 @@ section ul{
 
 .style a{
     cursor: pointer;
+    padding-top: 5%;
 }
 
 .style a:hover{

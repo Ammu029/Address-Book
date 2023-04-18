@@ -9,7 +9,10 @@
     <title>Address Book</title>
     <link rel="stylesheet" href="index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="contact.js"></script>
+    <script src="contact.js" defer></script>
+    <script>
+
+    </script>
 </head>
 
 <body>
@@ -50,35 +53,29 @@
             <div class="details">
                 <div class="name detail_style">
                     <label for="name">Name</label>
-                    <input id="details-name" type="text"
-                        placeholder="Enter your name">
+                    <input id="details-name" type="text" placeholder="Enter your name">
                 </div>
                 <div class="email detail_style">
                     <label for="email">Email</label>
-                    <input id="details-email" type="text"
-                        placeholder="Enter your email address">
+                    <input id="details-email" type="text" placeholder="Enter your email address">
                 </div>
                 <div class="contact ">
                     <div class="mob detail_style">
                         <label for="mob">Mobile</label><br>
-                        <input id="details-mob" type="number" 
-                            placeholder="Enter your mobile no.">
+                        <input id="details-mob" type="number" placeholder="Enter your mobile no.">
                     </div>
                     <div class="landline detail_style">
                         <label for="landline">Landline</label><br>
-                        <input id="details-landline" type="number" 
-                            placeholder="Enter your landline no.">
+                        <input id="details-landline" type="number" placeholder="Enter your landline no.">
                     </div>
                 </div>
                 <div class="website detail_style ">
                     <label for="website">Website</label>
-                    <input id="details-web" type="text" 
-                        placeholder="Enter your website">
+                    <input id="details-web" type="text" placeholder="Enter your website">
                 </div>
                 <div class="addr detail_style">
                     <label for="addr">Address</label>
-                    <input id="details-addr" type="text" style="height: 90px;"
-                        placeholder="Enter your address">
+                    <input id="details-addr" type="text" style="height: 90px;" placeholder="Enter your address">
                 </div>
             </div>
             <div class="btn">
@@ -96,7 +93,7 @@
                 </div>
                 <div class="email detail_style">
                     <label for="Update-email">Email</label>
-                    <input id="updateEmial" type="text" style="width:100%; height: 25px;"
+                    <input id="updateEmail" type="text" style="width:100%; height: 25px;"
                         placeholder="Enter your email address">
                 </div>
                 <div class="contact ">
@@ -107,25 +104,25 @@
                     </div>
                     <div class="landline detail_style">
                         <label for="landline">Landline</label><br>
-                        <input type="number" style="height: 25px; width: 100%;" placeholder="Enter your landline no.">
+                        <input id="updateLandline" type="number" style="height: 25px; width: 100%;" placeholder="Enter your landline no.">
                     </div>
                 </div>
                 <div class="website detail_style ">
                     <label for="website">Website</label>
-                    <input type="text" style="width: 100%; height: 25px;" placeholder="Enter your website">
+                    <input id="updateWebsite" type="text" style="width: 100%; height: 25px;" placeholder="Enter your website">
                 </div>
                 <div class="addr detail_style">
                     <label for="addr">Address</label>
-                    <input type="text" style="width: 100%; height: 90px;" placeholder="Enter your address">
+                    <input id="updateAddr" type="text" style="width: 100%; height: 90px;" placeholder="Enter your address">
                 </div>
             </div>
             <div class="btn">
-                <input type="button" id="upadteContact" value="Update">
+                <input type="button" id="upadteContact" value="Update" onclick="UpdateData()">
             </div>
         </form>
-        <div class="view-contact-details">
-            <div class="detail-contact">
-                <div id="name">
+        <div class="view-contact-details" id="ViewContact">
+            <div id="detail-contact">
+                <!-- <div id="name">
                     <h2>
                         Praveen Battula
                     </h2>
@@ -144,15 +141,15 @@
                     Address:123 now here <br>
                     Some street <br>
                     Madhapur, Hyderabad 500033
-                </div>
+                </div> -->
             </div>
-            <div class="edit-contact style">
-                <img src="/download.jpg" alt="Edit contact" height="15px" width="15px">
-                <a id="edit">EDIT</a>
+            <div id="edit-contact" class="style">
+                <!-- <img src="/download.jpg" alt="Edit contact" height="15px" width="15px">
+                <a id="edit">EDIT</a> -->
             </div>
-            <div class="delete-contact style">
-                <img src="/Trash.jpg" alt=" Delete Contact" height="20px" width="20px">
-                <a id="delete">DELETE</a>
+            <div id="delete-contact" class="style">
+                <!-- <img src="/Trash.jpg" alt=" Delete Contact" height="20px" width="20px">
+                <a id="delete">DELETE</a> -->
             </div>
         </div>
     </div>

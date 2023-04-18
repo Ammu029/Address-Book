@@ -1,36 +1,4 @@
-$(document).ready(function () {
-    var id =0;
-    var cont=[];
-    var contact = [
-        {
-            id: id++,
-            name: "Chandermani",
-            email: "Chandermani@technovert.com",
-            mobile: +91123456789,
-            landline: 02224373075,
-            website: "www.google.com",
-            address: "Madhapur"
-        },
-        // {
-        //     id: id++,
-        //     name: "Sashi Pagadala ",
-        //     email: "sashi@technovert.com ",
-        //     mobile: +91123456789,
-        //     landline: 02224373075,
-        //     website: "www.google.com",
-        //     address: "Madhapur"
-        // },
-        // {
-        //     id: id++,
-        //     name: "Praveen Battula",
-        //     email: "battula@technovert.com",
-        //     mobile: +91123456789,
-        //     landline: 02224373075,
-        //     website: "www.google.com",
-        //     address: "Madhapur"
-        // },
-    ];
-
+$(document).ready(function (){ 
     $('#addContactPopup').hide();
     $('#updateContactPopup').hide();
     $('#homePage').click(() => {
@@ -45,7 +13,7 @@ $(document).ready(function () {
     });
     $('#submitContact').click(function () {
         var n = document.getElementById("addContactPopup").value;
-        console.log(n);
+   
         $("#addContactPopup").hide();
         $('.view-contact-details').show();
         $('#updateContactPopup').hide();
@@ -62,24 +30,40 @@ $(document).ready(function () {
         $('#updateContactPopup').hide();
         $('.view-contact-details').show();
     })
-    $('#delete').click(() => {
+    $('#delete-contact').click(() => {
         const response = confirm("Are you sure you want to delete the contact ?");
         if (response) {
             alert("Contact has been deleted.");
         }
     });
-    $('#edit').click(() => {
+    $('#edit-contact').click(() => {
         $('.view-contact-details').hide();
         $("#addContactPopup").hide();
         $('#updateContactPopup').show();
     });
-
-    $('#people-list ul li').on("click", function(){
-        console.log("my id is :"+this.id);
-    });
     
-    //on click on submit button to add conatct details
+    let localdata= [];
+    let contact = [];
+    localdata = JSON.parse(localStorage.getItem('data'));
+    let id = 0;
+    if(!localdata){
+        $("#people-list ul").append(
+            `<li> 
+                <h6>${"No contact Added."} </h6>
+            </li>`);
+    }
+    if(localdata){
+        contact = [...localdata];
+    }
+
+    //on click of submit button to add conatct details
     $('#submitContact').click(function (e) {
+
+        if(localdata){
+
+            id = localdata.length
+        }
+
         e.preventDefault();
 
         let name = $('#details-name').val();
@@ -88,8 +72,8 @@ $(document).ready(function () {
         let ldline = $('#details-landline').val();
         let addr = $('#details-addr').val();
         let web = $('#details-web').val();
-        console.log(name);
-        var person = {
+
+        let person = {
             id:id,
             name: name,
             email: email,
@@ -98,39 +82,128 @@ $(document).ready(function () {
             website: web,
             address: addr
         };
+
         id++;
 
         contact.push(person);
 
-        const result = cont.map(element => {
-            return element;
-        });
-        window.localStorage.setItem('data', JSON.stringify(contact));
-        
-        let localdata=localStorage.getItem("data");
-        let jsonData = JSON.parse(localdata);
-        console.log(jsonData);
-        jsonData.forEach(element=> 
-        {
-            console.log(element);
-            cont.push(element);
+        localStorage.setItem('data', JSON.stringify(contact));
+
+        location.reload();
+    });
+
+    // rendering the contacts in the li 
+    contact.forEach(element=>{
+      
+        $("#people-list ul").append(
+            // onclick="${showDetails(element)}"
            
-        });
-        cont.forEach(element=>{
-                $("#people-list ul ").append(
-                    `
-                         <li> 
-                               <h2>${element.name} </h2>
-                               <h5>${element.email} <br>
-                                 ${element.mobile}
-                               </h5>                                
-                         </li>
-                    `);
-        })
-    })
+            `<li class="item" id=${element.id}> 
+                <h2>${element.name} </h2>
+                <h5>${element.email} <br>
+                    ${element.mobile}
+                </h5>                                
+            </li>`);
+    });
    
+    // showing the details of the contact on click of <li>
+    $("#people-list ul li").on('click',function(){           
+        // let user = element;
+       const id = parseInt($(this).attr("id"));
+
+       let localdata= [];
+       localdata = JSON.parse(localStorage.getItem('data'));
+        
+       let contact = localdata.find(p=>p.id ==id);
+        document.getElementById("detail-contact").innerHTML =  
+        `<div id="name">
+        <h2>
+        ${contact.name}
+        </h2>
+        </div>
+        <div id="email">
+        Email: ${contact.email}
+        </div>
+        <div id="cont">
+        Mobile: ${contact.mobile}<br>
+        Website: ${contact.landline}
+        </div>
+        <div id="website">
+        Website: ${contact.website}
+        </div>
+        <div id="addr">
+            Address:${contact.address}
+        </div>`
+
+        document.getElementById("edit-contact").innerHTML = 
+        `
+            <a id="edit" onclick ="editDetailForm()" > <img src="/download.jpg" alt="Edit contact" height="15px" width="15px">EDIT</a>
+        `
+
+        document.getElementById("delete-contact").innerHTML = 
+        `
+        <a id="delete"><img src="/Trash.jpg" alt=" Delete Contact" height="20px" width="20px">DELETE</a>
+
+        `
+        // editDetailForm = (data)=>{    '${JSON.stringify(contact)}'
+        //     let contact = 
+        // }
+        editDetailForm = ()=>{
+
+            $('#updateName').attr('value', contact.name);
+            $('#updateEmail').attr('value', contact.email);
+            $('#updateMob').attr('value', contact.mobile);
+            $('#updateLandline').attr('value', contact.landline);
+            $('#updateWebsite').attr('value', contact.website);
+            $('#updateAddr').attr('value', contact.address);
+
+        }
+
+    });
+
+
     
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ //     $("#people-list ul").append(
+    //         `<li> 
+    //             <h2>${element.name} </h2>
+    //             <h5>${element.email} <br>
+    //                 ${element.mobile}
+    //             </h5>                                
+    //         </li>`);
+    // });
 
 
 
@@ -186,3 +259,35 @@ $(document).ready(function () {
 // }
 
 
+
+
+
+
+
+// {
+        //     id: id++,
+        //     name: "Chandermani",
+        //     email: "Chandermani@technovert.com",
+        //     mobile: +91123456789,
+        //     landline: 02224373075,
+        //     website: "www.google.com",
+        //     address: "Madhapur"
+        // },
+        // {
+        //     id: id++,
+        //     name: "Sashi Pagadala ",
+        //     email: "sashi@technovert.com ",
+        //     mobile: +91123456789,
+        //     landline: 02224373075,
+        //     website: "www.google.com",
+        //     address: "Madhapur"
+        // },
+        // {
+        //     id: id++,
+        //     name: "Praveen Battula",
+        //     email: "battula@technovert.com",
+        //     mobile: +91123456789,
+        //     landline: 02224373075,
+        //     website: "www.google.com",
+        //     address: "Madhapur"
+        // },

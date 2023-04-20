@@ -194,6 +194,12 @@ section ul{
 ::-webkit-input-placeholder{
     padding: 5px;
 }
+
+
+.check-style{
+    color: red;
+}
+
 @media (width<=700px){
     .add_contact_popup{ 
     grid-template-columns: auto auto;  

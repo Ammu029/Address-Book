@@ -46,7 +46,7 @@
                 </ul>
             </section>
         </div>
-        <form id="addContactPopup" class="add_contact_popup" name="addContactForm"  onSubmit="return validate()">
+        <!-- <form id="addContactPopup" class="add_contact_popup" name="addContactForm">
             <button class="cancel">
                 X
             </button>
@@ -86,7 +86,158 @@
                 <input type="submit" id="updateContact" value="Update">
             </div>
            
+        </form> -->
+
+        <form id="addContactPopup" class="add_contact_popup" name="addContactForm">
+            <button class="cancel">
+                X
+            </button>
+            <div class="details">
+                <div class="name detail_style">
+                    <label for="name">Name</label>
+                    <input id="details-name" type="text" placeholder="Enter your name" required minlength="2" maxlength="50" pattern="[A-Za-z\s]+">
+                    <h5 id="nameCheck" class="check-style">
+                        Name is missing
+                    </h5>
+                </div>
+                <div class="email detail_style">
+                    <label for="email">Email</label>
+                    <input id="details-email" type="email" placeholder="Enter your email address" required>
+                    <h5 id="emailCheck" class="check-style">
+                        Email is missing
+                    </h5>
+                </div>
+                <div class="contact ">
+                    <div class="mob detail_style">
+                        <label for="mob">Mobile</label><br>
+                        <input id="details-mob" type="tel" placeholder="Enter your mobile no." minlength="10" maxlength="10" required pattern="[0-9]+">
+                        <h5 id="mobCheck" class="check-style">
+                            Mobile number is missing
+                        </h5>
+                    </div>
+                    <div class="landline detail_style">
+                        <label for="landline">Landline</label><br>
+                        <input id="details-landline" type="tel" placeholder="Enter your landline no." minlength="10" maxlength="10" required pattern="[0-9]+">
+                        <h5 id="ldlineCheck" class="check-style">
+                            Landline number is missing
+                        </h5>
+                    </div>
+                </div>
+                <div class="website detail_style ">
+                    <label for="website">Website</label>
+                    <input id="details-web" type="url" placeholder="Enter your website" required>
+                    <h5 id="webCheck" class="check-style">
+                        Website is missing
+                    </h5>
+                </div>
+                <div class="addr detail_style">
+                    <label for="addr">Address</label>
+                    <textarea id="details-addr" style="height: 90px;" placeholder="Enter your address" required minlength="10" maxlength="200"></textarea>
+                    <h5 id="addrCheck" class="check-style">
+                        Address is missing
+                    </h5>
+                </div>
+            </div>
+            <div class="btn">
+                <input type="submit" id="submitContact" value="Add">          
+            </div>
+            <div class="btn">
+                <input type="submit" id="updateContact" value="Update">
+            </div>
         </form>
+
+        <div class="view-contact-details" id="ViewContact">
+            <div id="detail-contact">
+                <!-- <div id="name">
+                    <h2>
+                        Praveen Battula
+                    </h2>
+                </div>
+                <div id="email">
+                    Email: praveen@technovert.com
+                </div>
+                <div id="cont">
+                    Mobile: +91 1234567 <br>
+                    Landline:040 30 1231211
+                </div>
+                <div id="website">
+                    Website: http://technovert.com
+                </div>
+                <div id="addr">
+                    Address:123 now here <br>
+                    Some street <br>
+                    Madhapur, Hyderabad 500033
+                </div> -->
+            </div>
+            <div id="edit-contact" class="style">
+                <!-- <img src="/download.jpg" alt="Edit contact" height="15px" width="15px">
+                <a id="edit">EDIT</a> -->
+            </div>
+            <div id="delete-contact" class="style">
+                <!-- <img src="/Trash.jpg" alt=" Delete Contact" height="20px" width="20px">
+                <a id="delete">DELETE</a> -->
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+
+
+<!-- <form id="addContactPopup" class="add_contact_popup" name="addContactForm">
+    <button class="cancel">
+        X
+    </button>
+    <div class="details">
+        <div class="name detail_style">
+            <label for="name">Name</label>
+            <input id="details-name" type="text" placeholder="Enter your name" required minlength="2" maxlength="50" pattern="[A-Za-z\s]+">
+        </div>
+        <div class="email detail_style">
+            <label for="email">Email</label>
+            <input id="details-email" type="email" placeholder="Enter your email address" required>
+        </div>
+        <div class="contact ">
+            <div class="mob detail_style">
+                <label for="mob">Mobile</label><br>
+                <input id="details-mob" type="tel" placeholder="Enter your mobile no." minlength="10" maxlength="10" required pattern="[0-9]+">
+            </div>
+            <div class="landline detail_style">
+                <label for="landline">Landline</label><br>
+                <input id="details-landline" type="tel" placeholder="Enter your landline no." minlength="10" maxlength="10" required pattern="[0-9]+">
+            </div>
+        </div>
+        <div class="website detail_style ">
+            <label for="website">Website</label>
+            <input id="details-web" type="url" placeholder="Enter your website" required>
+        </div>
+        <div class="addr detail_style">
+            <label for="addr">Address</label>
+            <textarea id="details-addr" style="height: 90px;" placeholder="Enter your address" required minlength="10" maxlength="200"></textarea>
+        </div>
+    </div>
+    <div class="btn">
+        <input type="submit" id="submitContact" value="Add">          
+    </div>
+    <div class="btn">
+        <input type="submit" id="updateContact" value="Update">
+    </div>
+</form> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
         <!-- <form id="updateContactPopup" class="update_contact_popup" action="">
             <button class="cancel">
                 X
@@ -125,39 +276,3 @@
                 <input type="button" id="updateContact" value="Update" >
             </div>
         </form> -->
-        <div class="view-contact-details" id="ViewContact">
-            <div id="detail-contact">
-                <!-- <div id="name">
-                    <h2>
-                        Praveen Battula
-                    </h2>
-                </div>
-                <div id="email">
-                    Email: praveen@technovert.com
-                </div>
-                <div id="cont">
-                    Mobile: +91 1234567 <br>
-                    Landline:040 30 1231211
-                </div>
-                <div id="website">
-                    Website: http://technovert.com
-                </div>
-                <div id="addr">
-                    Address:123 now here <br>
-                    Some street <br>
-                    Madhapur, Hyderabad 500033
-                </div> -->
-            </div>
-            <div id="edit-contact" class="style">
-                <!-- <img src="/download.jpg" alt="Edit contact" height="15px" width="15px">
-                <a id="edit">EDIT</a> -->
-            </div>
-            <div id="delete-contact" class="style">
-                <!-- <img src="/Trash.jpg" alt=" Delete Contact" height="20px" width="20px">
-                <a id="delete">DELETE</a> -->
-            </div>
-        </div>
-    </div>
-</body>
-
-</html>

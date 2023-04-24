@@ -32,7 +32,7 @@ nav img{
     float: right;
     padding-right: 0.5%;
 }
-#contact-list-container{
+#contactListContainer{
     width: 90%;
 }
 #contactContainer{
@@ -42,15 +42,15 @@ nav img{
     display: grid;
     grid-template-columns: 40% 50%;
 }
-/* #contact-list-container{
+/* #contactListContainer{
     font-weight: bold;
 } */
-#contact-list-container span{
+#contactListContainer span{
     font-family: monospace;
-    font-size: 14px;
+    font-size: large;
     font-weight: bold;
 }
-#people-list{
+#peopleList{
     color: #36332f;
     overflow: overlay;
     height: 375px;
@@ -108,6 +108,7 @@ section ul{
 }
 .detail_style{
     margin-bottom: 4%;
+    font-size: small;
 }
 .detail_style input{
     width: 100%; 
@@ -198,6 +199,11 @@ section ul{
 
 .check-style{
     color: red;
+}
+
+#formDetailAddr{
+    height: 75px; 
+    width: 100%;
 }
 
 @media (width<=700px){

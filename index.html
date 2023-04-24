@@ -9,9 +9,14 @@
     <title>Address Book</title>
     <link rel="stylesheet" href="index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="contact.js" defer></script>
+    <script src="Addressbook.js" defer></script>
+    <script src="AddressBookService.js"></script>
     <script>
-        
+        // let form = $("#addContactPopup");
+        // form.on('submit', function(event){
+        //     event.preventDefault();
+        //     form[0].reset();
+        // });
     </script>
 </head>
 
@@ -21,15 +26,15 @@
     </header>
     <nav>
         <a href="#" id="homePage"> HOME</a>
-        <a href="#" id="add-contact">+ADD</a>
+        <a href="#" id="addContact">+ADD</a>
         <img src="/blog-icon.png" alt="blog" height="22px">
     </nav>
     <div id="contactContainer">
-        <div id="contact-list-container">
+        <div id="contactListContainer">
             <span>CONTACTS</span>
-            <section id="people-list">
+            <section id="peopleList">
                 <ul>
-                    <!-- <li>
+                     <!--<li>
                         <h2>Chandermani Arora</h2>
                         <h5>
                             chandermani@technovert.com <br>
@@ -89,20 +94,20 @@
         </form> -->
 
         <form id="addContactPopup" class="add_contact_popup" name="addContactForm">
-            <button class="cancel">
+            <button type="button" class="cancel">
                 X
             </button>
             <div class="details">
                 <div class="name detail_style">
                     <label for="name">Name</label>
-                    <input id="details-name" type="text" placeholder="Enter your name" required minlength="2" maxlength="50" pattern="[A-Za-z\s]+">
+                    <input id="formDetailName" type="text" placeholder="Enter your name" required minlength="2" maxlength="50" >
                     <h5 id="nameCheck" class="check-style">
                         Name is missing
                     </h5>
                 </div>
                 <div class="email detail_style">
                     <label for="email">Email</label>
-                    <input id="details-email" type="email" placeholder="Enter your email address" required>
+                    <input id="formDetailEmail" type="email" placeholder="Enter your email address" required>
                     <h5 id="emailCheck" class="check-style">
                         Email is missing
                     </h5>
@@ -110,14 +115,14 @@
                 <div class="contact ">
                     <div class="mob detail_style">
                         <label for="mob">Mobile</label><br>
-                        <input id="details-mob" type="tel" placeholder="Enter your mobile no." minlength="10" maxlength="10" required pattern="[0-9]+">
+                        <input id="formDetailMob" type="tel" placeholder="Enter your mobile no." minlength="10" maxlength="10" required pattern="[0-9]+">
                         <h5 id="mobCheck" class="check-style">
                             Mobile number is missing
                         </h5>
                     </div>
                     <div class="landline detail_style">
                         <label for="landline">Landline</label><br>
-                        <input id="details-landline" type="tel" placeholder="Enter your landline no." minlength="10" maxlength="10" required pattern="[0-9]+">
+                        <input id="formDetailLandline" type="tel" placeholder="Enter your landline no." minlength="10" maxlength="10" required pattern="[0-9]+">
                         <h5 id="ldlineCheck" class="check-style">
                             Landline number is missing
                         </h5>
@@ -125,14 +130,14 @@
                 </div>
                 <div class="website detail_style ">
                     <label for="website">Website</label>
-                    <input id="details-web" type="url" placeholder="Enter your website" required>
+                    <input id="formDetailWeb" type="url" placeholder="Enter your website" required>
                     <h5 id="webCheck" class="check-style">
                         Website is missing
                     </h5>
                 </div>
                 <div class="addr detail_style">
                     <label for="addr">Address</label>
-                    <textarea id="details-addr" style="height: 90px;" placeholder="Enter your address" required minlength="10" maxlength="200"></textarea>
+                    <input id="formDetailAddr"  placeholder="Enter your address" required maxlength="200">
                     <h5 id="addrCheck" class="check-style">
                         Address is missing
                     </h5>
@@ -169,11 +174,11 @@
                     Madhapur, Hyderabad 500033
                 </div> -->
             </div>
-            <div id="edit-contact" class="style">
+            <div id="editContact" class="style">
                 <!-- <img src="/download.jpg" alt="Edit contact" height="15px" width="15px">
                 <a id="edit">EDIT</a> -->
             </div>
-            <div id="delete-contact" class="style">
+            <div id="deleteContact" class="style">
                 <!-- <img src="/Trash.jpg" alt=" Delete Contact" height="20px" width="20px">
                 <a id="delete">DELETE</a> -->
             </div>
@@ -225,19 +230,6 @@
         <input type="submit" id="updateContact" value="Update">
     </div>
 </form> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
         <!-- <form id="updateContactPopup" class="update_contact_popup" action="">
             <button class="cancel">
                 X

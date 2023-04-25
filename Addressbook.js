@@ -233,9 +233,9 @@ $(document).ready(function(){
                 </div> `
             );
 
-            $("#editContact").html(`<a id="edit"  > <img src="/download.jpg" alt="Edit contact" height="13px" width="15px" style="transform: rotatey(44deg);">EDIT</a>`);
+            $("#editContact").html(`<a id="edit"  > <img src="download.jpg" alt="Edit contact" height="13px" width="15px" style="transform: rotatey(44deg);">EDIT</a>`);
 
-            $("#deleteContact").html(`<a id="delete" ><img src="/Trash.jpg" alt=" Delete Contact" height="12px" width="10px">DELETE</a>`);
+            $("#deleteContact").html(`<a id="delete" ><img src="Trash.jpg" alt=" Delete Contact" height="12px" width="10px">DELETE</a>`);
 
         // editDetailForm = ()=>{
         //         $('#formDetailName').attr('value', contact.name);

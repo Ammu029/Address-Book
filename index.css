@@ -1,14 +1,16 @@
 *{
     margin: 0px;
     padding: 0px;
-    font-family: sans-serif;
+    font-family:  system-ui;;
     font-weight: lighter;
 }
 header{
     background-color: #5091be;
-    padding: 2%;
+    padding: 1%;
     padding-left: 2%;
     color: white;
+    font-weight: 700;
+    font-size: 25px;
 }
 nav{
     background-color: black;
@@ -16,6 +18,7 @@ nav{
     padding: 8px;
     font-family: system-ui;
     font-weight: 700;
+
 }
 nav a{
     color: white;
@@ -24,6 +27,7 @@ nav a{
     padding-right: 1%;
     padding-top: 5px;
     padding-bottom: 5px;
+    font-weight: bold;
 }
 nav a:hover{
     background-color: grey;
@@ -33,7 +37,7 @@ nav img{
     padding-right: 0.5%;
 }
 #contactListContainer{
-    width: 90%;
+    width: 80%;
 }
 #contactContainer{
     padding: 2%;
@@ -60,15 +64,15 @@ section{
 }
 section ul li{
     list-style-type:none ;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid #a9a4a4;
     padding-left: 10px;
-    padding-bottom: 15px;
-    padding-top: 10px;
+    padding-bottom: 10px;
     
 }
 section ul li h5{
     padding-top: 2%;
     padding-left: 1%;
+    font-weight: 380;
 }
 /* section ul li h2{
     font-weight: lighter;
@@ -80,7 +84,7 @@ section ul li:hover{
 }
 
 section ul{
-    border: 1px solid grey; 
+    border: 1px solid #a9a4a4; 
 }
 .add_contact_popup{
     border: 1px solid black;
@@ -88,15 +92,23 @@ section ul{
     padding: 5%;
     box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
     height: auto;
+    padding-top: 3%;
+}
+
+.add_contact_popup:first-child{
+    float: right;
 }
 .cancel{
-    margin-left: 96%;
-    color: grey;
+   
+    color: red;
     cursor: pointer;
     width: 3%;
     height: 4%;
     border: none;
     background-color: white;
+}
+.cancel_div{
+    float: right;
 }
 .details{
     width: 80%;
@@ -107,8 +119,9 @@ section ul{
     justify-content:space-between;
 }
 .detail_style{
-    margin-bottom: 4%;
+    margin-bottom: 2%;
     font-size: small;
+    font-weight: 800;
 }
 .detail_style input{
     width: 100%; 
@@ -148,9 +161,10 @@ section ul{
     height: auto;
 }
 .view-contact-details{
-    display: flex;
+    display: grid;
     margin-top: 5%;
     justify-content: space-evenly;
+    grid-template-columns: 60% 20% 20%;
     /* font-family: sans-serif;
     font-weight: lighter; */
 }
@@ -158,28 +172,35 @@ section ul{
 #name{
     font-size: 20px;
     margin-bottom: 4%;
+    font-weight: 700;
 }
 #email{
-    margin-bottom: 8%;
-    color: #36332f;
+    margin-bottom: 3%;
+    color:black;
+    font-weight: 380;
 }
 #cont{
-    margin-bottom: 8%;
-    color: #36332f;
+    margin-bottom: 3%;
+    color: black;
+    font-weight: 380;
 }
 #website{
-    margin-bottom: 9%;
-    color: #36332f;
+    margin-bottom: 3%;
+    color: black;
+    font-weight: 380;
 }
 #addr{
-    color: #36332f;
+    color: black;
+    font-weight: 380;
 }
 .style img{
     margin-right: 5px;
+    margin-top: 0.8px;
 }
 .style{
     display: flex;
     font-size: 12px;
+    font-weight: 700;
 }
 
 .style a{

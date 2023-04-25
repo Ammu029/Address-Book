@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    let obj = new Services();
-  
+    let ABService = new AddressBookService();
+    var id;
     $('#addContactPopup').hide();
     $('#homePage').click(() => {
         $("#addContactPopup").hide();
@@ -25,10 +25,10 @@ $(document).ready(function(){
             event.preventDefault();
             form[0].reset();
         });
-
-        $("#addContactPopup").hide();
-        $('.view-contact-details').hide();
-       
+        if(validate()){
+            $("#addContactPopup").hide();
+            $('.view-contact-details').hide();
+        }
     });
     $('.cancel').click(function () {
         $("#addContactPopup").hide();
@@ -45,6 +45,7 @@ $(document).ready(function(){
         $('.view-contact-details').show();
     });
     $("#submitContact").click(function(){
+        
         if(validate()){
             $("#addContactPopup").hide();
             $('.view-contact-details').hide();
@@ -53,9 +54,7 @@ $(document).ready(function(){
 
     //validate name
         $("#nameCheck").hide();
-        $("#formDetailName").keyup(function () {
-        validateUsername();
-        });
+        $("#formDetailName").change(validateUsername);
         function validateUsername() 
         {
             let usernameValue = $("#formDetailName").val();
@@ -75,10 +74,7 @@ $(document).ready(function(){
     
         //validate email
         $("#emailCheck").hide();
-       
-        $("#formDetailEmail").keyup(function () {
-        validateEmail();
-        });
+        $("#formDetailEmail").change(validateEmail);
         function validateEmail() 
         {
             let emailValue = $("#formDetailEmail").val();
@@ -92,13 +88,11 @@ $(document).ready(function(){
     
         //validate mob
         $("#mobCheck").hide();
-        $("#formDetailMob").keyup(function () {
-        validateMobile();
-        });
+        $("#formDetailMob").change(validateMobile);
         function validateMobile() 
         {
             let mobValue = $("#formDetailMob").val();
-            if (mobValue == " " || mobValue == null) {
+            if (mobValue == "" || mobValue == " ") {
                 $("#mobCheck").show();
                 return false;
             }else if(isNaN(mobValue)){
@@ -112,9 +106,7 @@ $(document).ready(function(){
     
         //validate landline
         $("#ldlineCheck").hide();
-        $("#formDetailLandline").keyup(function () {
-        validateLandline();
-        });
+        $("#formDetailLandline").change(validateLandline);
         function validateLandline() 
         {
             let ldlineValue = $("#formDetailLandline").val();
@@ -132,9 +124,7 @@ $(document).ready(function(){
     
         //validate website
         $("#webCheck").hide();
-        $("#formDetailWeb").keyup(function () {
-        validateWeb();
-        });
+        $("#formDetailWeb").change(validateWeb);
         function validateWeb() 
         {
             let webValue = $("#formDetailWeb").val();
@@ -148,9 +138,7 @@ $(document).ready(function(){
     
         //validate address
         $("#addrCheck").hide();
-        $("#formDetailAddr").keyup(function () {
-        validateAddr();
-        });
+        $("#formDetailAddr").change(validateAddr);
         function validateAddr() 
         {
             let addrValue = $("#formDetailAddr").val();
@@ -161,6 +149,7 @@ $(document).ready(function(){
                  $("#addrCheck").hide();
             }
         }     
+
         // validate the data before form submit
         function validate()
         {  
@@ -178,22 +167,6 @@ $(document).ready(function(){
             return true;   
         }  
 
-        // let localdata= [];
-        // let contact = [];
-        // localdata = JSON.parse(localStorage.getItem('data'));
-        // let id;
-        // if(!localdata || localdata==""){
-        //     $("#peopleList").append(`<h6>${"No contact Added."} </h6>`);
-        //     id=1;
-        // // localStorage.clear();
-        // }
-        // if(localdata){
-        //     contact = [...localdata];
-        //     id = localdata[localdata.length-1].id;
-        //     id++;
-        //     renderContactList();
-        // }
-
     renderContactList();
     $('#submitContact').on('click', function (e) {  
        if(validate()){
@@ -206,91 +179,80 @@ $(document).ready(function(){
                 let addr = $('#formDetailAddr').val();
                 let web = $('#formDetailWeb').val();
 
-                obj.addcontactDetails(name, email, mob, ldline, web, addr);
-                // let person = {
-                //     id:id,
-                //     name: name,
-                //     email: email,
-                //     mobile: mob,
-                //     landline: ldline,
-                //     website: web,
-                //     address: addr
-                // };
-                
-                // contact.push(person); 
-                // localStorage.setItem('data', JSON.stringify(contact));
-                
-                // location.reload();
-            }
+                ABService.addContactDetails(name, email, mob, ldline, web, addr);
+        }
     
     });
 
     function renderContactList(){
-        let contact = obj.getLoacldata();
-        while($("#peopleList ul").firstChild){
-            $("#peopleList ul").removeChild($("#peopleList ul").firstChild);
-        }
+        let contact = ABService.getLoaclData();
+        if(contact){
 
-        contact.forEach(element=>{
-            $("#peopleList ul").append(
-                // onclick="${showDetails(element)}"
-                `<li class="item" id=${element.id}> 
-                        <h2>${element.name} </h2>
-                        <h5>${element.email} <br>
-                            ${element.mobile}
-                        </h5>                                
-                    </li>
-                `);
-        });   
-    }
-
-    $("#peopleList ul li").on('click',function(){          
-           const id = parseInt($(this).attr("id"));
-
-            let contact = obj.getContactById(id);
-
-            document.getElementById("detail-contact").innerHTML =  
-            `<div id="name">
-            <h2>
-            ${contact.name}
-            </h2>
-            </div>
-            <div id="email">
-            Email: ${contact.email}
-            </div>
-            <div id="cont">
-            Mobile: ${contact.mobile}<br>
-            Landline: ${contact.landline}
-            </div>
-            <div id="website">
-            Website: ${contact.website}
-            </div>
-            <div id="addr">
-            Address:${contact.address}
-            </div> `
-       
-            document.getElementById("editContact").innerHTML = 
-            `
-                <a id="edit" onclick ="editDetailForm()" > <img src="/download.jpg" alt="Edit contact" height="13px" width="15px" style="transform: rotatey(44deg);">EDIT</a>
-            `
-            document.getElementById("deleteContact").innerHTML = 
-            `
-                <a id="delete" ><img src="/Trash.jpg" alt=" Delete Contact" height="12px" width="10px">DELETE</a>
+            while($("#peopleList ul").firstChild){
+                $("#peopleList ul").removeChild($("#peopleList ul").firstChild);
+            }
     
-            `
-        editDetailForm = ()=>{
-             
-                $('#formDetailName').attr('value', contact.name);
-                $('#formDetailEmail').attr('value', contact.email);
-                $('#formDetailMob').attr('value', contact.mobile);
-                $('#formDetailLandline').attr('value', contact.landline);
-                $('#formDetailWeb').attr('value', contact.website);
-                $('#formDetailAddr').attr('value', contact.address);
+            contact.forEach(element=>{
+                $("#peopleList").append(
+                    `<ul>
+                    <li class="item" id=${element.id}> 
+                            <h2>${element.name} </h2>
+                            <h5>${element.email} <br>
+                                ${element.mobile}
+                            </h5>                                
+                        </li>
+                    </ul>`
+                    );
+            });   
+        }else{
+            $("#peopleList").append(`<h6>${"No user contact Added."} </h6>`);
         }
+    }
+    
+    $("#peopleList ul li").on('click',function(){          
+            id = parseInt($(this).attr("id"));
+            let contact = ABService.getContactById(id);
+            $("#detail-contact").html(
+                `<div id="name">
+                <h2>
+                ${contact.name}
+                </h2>
+                </div>
+                <div id="email">
+                Email: ${contact.email}
+                </div>
+                <div id="cont">
+                Mobile: ${contact.mobile}<br>
+                Landline: ${contact.landline}
+                </div>
+                <div id="website">
+                Website: ${contact.website}
+                </div>
+                <div id="addr">
+                Address: ${contact.address}
+                </div> `
+            );
+
+            $("#editContact").html(`<a id="edit"  > <img src="/download.jpg" alt="Edit contact" height="13px" width="15px" style="transform: rotatey(44deg);">EDIT</a>`);
+
+            $("#deleteContact").html(`<a id="delete" ><img src="/Trash.jpg" alt=" Delete Contact" height="12px" width="10px">DELETE</a>`);
+
+        // editDetailForm = ()=>{
+        //         $('#formDetailName').attr('value', contact.name);
+        //         $('#formDetailEmail').attr('value', contact.email);
+        //         $('#formDetailMob').attr('value', contact.mobile);
+        //         $('#formDetailLandline').attr('value', contact.landline);
+        //         $('#formDetailWeb').attr('value', contact.website);
+        //         $('#formDetailAddr').attr('value', contact.address);
+        // }
 
         // updating the contact details on edit
-        $("#updateContact").on('click',function(){
-          obj.update_contact_detail(id);
+        // $("#updateContact").on('click',function(e){
+        //     if(validate()){
+        //         e.preventDefault();
+
+        //         ABService.updateContactDetail(id);
+        //     }
             // contact.name = $('#formDetailName').val();
             // contact.email = $('#formDetailEmail').val();
             // contact.mobile = $('#formDetailMob').val();
@@ -301,28 +263,66 @@ $(document).ready(function(){
             // localStorage.setItem('data',JSON.stringify(localdata));
             // location.reload();
 
-        });
+      //  });
 
-        // delete the contacts
-        $("#delete").on('click', function(){
-            obj.delete_contact(id);
-            // const response = confirm("Are you sure you want to delete the contact?");
-            // if (response) {
-            //     if(localdata){
-            //         let newLocaldata = localdata.filter((p) => p!=contact);
-
-            //         localStorage.setItem('data', JSON.stringify(newLocaldata));
-            //         alert("Contact has been deleted.");
-            //         location.reload();
-            //     }else{
-            //         $("#peopleList").append(`<h6>${"No contact Added."} </h6>`);
-            //     }
-                
-            // }
-            
-        });
-        
     });
+
+  $("body").on('click','#edit',function(e){
+    e.preventDefault();
+    let contact = ABService.getContactById(id);
+
+    $('#formDetailName').attr('value', contact.name);
+    $('#formDetailEmail').attr('value', contact.email);
+    $('#formDetailMob').attr('value', contact.mobile);
+    $('#formDetailLandline').attr('value', contact.landline);
+    $('#formDetailWeb').attr('value', contact.website);
+    $('#formDetailAddr').attr('value', contact.address);
+
+    // let test = $(this).parent("#detail-contact").attr("id");
+    // console.log(test);
+  });
     
-       
+
+    // updating the contact details on edit
+    $("#updateContact").on('click',function(e){
+        if(validate()){
+            e.preventDefault();
+
+            ABService.updateContactDetail(id);
+        }
+        // contact.name = $('#formDetailName').val();
+        // contact.email = $('#formDetailEmail').val();
+        // contact.mobile = $('#formDetailMob').val();
+        // contact.landline =$('#formDetailLandline').val();
+        // contact.website = $('#formDetailAddr').val();
+        // contact.address = $('#formDetailWeb').val();
+        
+        // localStorage.setItem('data',JSON.stringify(localdata));
+        // location.reload();
+
+    });
+
+     // delete the contacts
+     $("body").on('click','#delete', function(){
+        let p = ABService.deleteContact(id);
+
+        if(!p){
+         $("#peopleList").append(`<h6>${"No user contact Added."} </h6>`);
+        }
+         // const response = confirm("Are you sure you want to delete the contact?");
+         // if (response) {
+         //     if(localdata){
+         //         let newLocaldata = localdata.filter((p) => p!=contact);
+
+         //         localStorage.setItem('data', JSON.stringify(newLocaldata));
+         //         alert("Contact has been deleted.");
+         //         location.reload();
+         //     }else{
+         //         $("#peopleList").append(`<h6>${"No contact Added."} </h6>`);
+         //     }
+             
+         // }
+     });
 });
+
+

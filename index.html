@@ -33,8 +33,8 @@
         <div id="contactListContainer">
             <span>CONTACTS</span>
             <section id="peopleList">
-                <ul>
-                     <!--<li>
+                <!-- <ul>
+                     <li>
                         <h2>Chandermani Arora</h2>
                         <h5>
                             chandermani@technovert.com <br>
@@ -47,56 +47,13 @@
                             vijay@technovert.com <br>
                             +91 123456789
                         </h5>
-                    </li> -->
-                </ul>
+                    </li>
+                </ul> -->
             </section>
         </div>
-        <!-- <form id="addContactPopup" class="add_contact_popup" name="addContactForm">
-            <button class="cancel">
-                X
-            </button>
-            <div class="details">
-                <div class="name detail_style">
-                    <label for="name">Name</label>
-                    <input id="details-name" type="text" placeholder="Enter your name" required/>
-                </div>
-                <div class="email detail_style">
-                    <label for="email">Email</label>
-                    <input id="details-email" type="email" placeholder="Enter your email address" required>
-                </div>
-                <div class="contact ">
-                    <div class="mob detail_style">
-                        <label for="mob">Mobile</label><br>
-                        <input id="details-mob" type="tel" placeholder="Enter your mobile no." minlength="10" maxlength="10" required>
-                    </div>
-                    <div class="landline detail_style">
-                        <label for="landline">Landline</label><br>
-                        <input id="details-landline" type="tel" placeholder="Enter your landline no." minlength="10" maxlength="10" required>
-                    </div>
-                </div>
-                <div class="website detail_style ">
-                    <label for="website">Website</label>
-                    <input id="details-web" type="text" placeholder="Enter your website" required>
-                </div>
-                <div class="addr detail_style">
-                    <label for="addr">Address</label>
-                    <input id="details-addr" type="textarea" style="height: 90px;" placeholder="Enter your address" required>
-                </div>
-                
-            </div>
-            <div class="btn">
-                <input type="submit" id="submitContact" value="Add">          
-            </div>
-            <div class="btn">
-                <input type="submit" id="updateContact" value="Update">
-            </div>
-           
-        </form> -->
 
         <form id="addContactPopup" class="add_contact_popup" name="addContactForm">
-            <button type="button" class="cancel">
-                X
-            </button>
+            <div class="cancel_div"><button type="button" class="cancel">X</button></div>
             <div class="details">
                 <div class="name detail_style">
                     <label for="name">Name</label>
@@ -115,14 +72,14 @@
                 <div class="contact ">
                     <div class="mob detail_style">
                         <label for="mob">Mobile</label><br>
-                        <input id="formDetailMob" type="tel" placeholder="Enter your mobile no." minlength="10" maxlength="10" required pattern="[0-9]+">
+                        <input id="formDetailMob" type="tel" placeholder="Enter your mobile no." minlength="10" maxlength="10" required>
                         <h5 id="mobCheck" class="check-style">
                             Mobile number is missing
                         </h5>
                     </div>
                     <div class="landline detail_style">
                         <label for="landline">Landline</label><br>
-                        <input id="formDetailLandline" type="tel" placeholder="Enter your landline no." minlength="10" maxlength="10" required pattern="[0-9]+">
+                        <input id="formDetailLandline" type="tel" placeholder="Enter your landline no." minlength="10" maxlength="10" required>
                         <h5 id="ldlineCheck" class="check-style">
                             Landline number is missing
                         </h5>
@@ -187,84 +144,3 @@
 </body>
 
 </html>
-
-
-
-
-<!-- <form id="addContactPopup" class="add_contact_popup" name="addContactForm">
-    <button class="cancel">
-        X
-    </button>
-    <div class="details">
-        <div class="name detail_style">
-            <label for="name">Name</label>
-            <input id="details-name" type="text" placeholder="Enter your name" required minlength="2" maxlength="50" pattern="[A-Za-z\s]+">
-        </div>
-        <div class="email detail_style">
-            <label for="email">Email</label>
-            <input id="details-email" type="email" placeholder="Enter your email address" required>
-        </div>
-        <div class="contact ">
-            <div class="mob detail_style">
-                <label for="mob">Mobile</label><br>
-                <input id="details-mob" type="tel" placeholder="Enter your mobile no." minlength="10" maxlength="10" required pattern="[0-9]+">
-            </div>
-            <div class="landline detail_style">
-                <label for="landline">Landline</label><br>
-                <input id="details-landline" type="tel" placeholder="Enter your landline no." minlength="10" maxlength="10" required pattern="[0-9]+">
-            </div>
-        </div>
-        <div class="website detail_style ">
-            <label for="website">Website</label>
-            <input id="details-web" type="url" placeholder="Enter your website" required>
-        </div>
-        <div class="addr detail_style">
-            <label for="addr">Address</label>
-            <textarea id="details-addr" style="height: 90px;" placeholder="Enter your address" required minlength="10" maxlength="200"></textarea>
-        </div>
-    </div>
-    <div class="btn">
-        <input type="submit" id="submitContact" value="Add">          
-    </div>
-    <div class="btn">
-        <input type="submit" id="updateContact" value="Update">
-    </div>
-</form> -->
-        <!-- <form id="updateContactPopup" class="update_contact_popup" action="">
-            <button class="cancel">
-                X
-            </button>
-            <div class="details">
-                <div class="name detail_style">
-                    <label for="update-name">Name</label>
-                    <input id="updateName" type="text" style="width: 100%; height: 25px;" placeholder="Enter your name">
-                </div>
-                <div class="email detail_style">
-                    <label for="Update-email">Email</label>
-                    <input id="updateEmail" type="text" style="width:100%; height: 25px;"
-                        placeholder="Enter your email address">
-                </div>
-                <div class="contact ">
-                    <div class="mob detail_style">
-                        <label for="update-mob">Mobile</label><br>
-                        <input id="updateMob" type="number" style="height: 25px; width: 100%;"
-                            placeholder="Enter your mobile no.">
-                    </div>
-                    <div class="landline detail_style">
-                        <label for="landline">Landline</label><br>
-                        <input id="updateLandline" type="number" style="height: 25px; width: 100%;" placeholder="Enter your landline no.">
-                    </div>
-                </div>
-                <div class="website detail_style ">
-                    <label for="website">Website</label>
-                    <input id="updateWebsite" type="text" style="width: 100%; height: 25px;" placeholder="Enter your website">
-                </div>
-                <div class="addr detail_style">
-                    <label for="addr">Address</label>
-                    <input id="updateAddr" type="textarea" style="width: 100%; height: 90px;" placeholder="Enter your address">
-                </div>
-            </div>
-            <div class="btn">
-                <input type="button" id="updateContact" value="Update" >
-            </div>
-        </form> -->

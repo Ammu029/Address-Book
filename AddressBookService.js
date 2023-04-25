@@ -1,39 +1,36 @@
-class Services  {
+class AddressBookService  {
     // fetch object using id
     getContactById(id){
         let localdata= [];
         localdata = JSON.parse(localStorage.getItem('data'));
         let contact = localdata.find(p=>p.id === id);
-
         return contact;
     }
+
     // return contact array to render the contact list
-   getLoacldata() {
+   getLoaclData() {
         let localdata= [];
         let contact = [];
         localdata = JSON.parse(localStorage.getItem('data'));
         if(!localdata || localdata==""){
-            $("#peopleList").append(`<h6>${"No contact Added."} </h6>`);
-        // localStorage.clear();
-        }
-        if(localdata){
+            return false;
+        }else
+        {
             contact = [...localdata];
+            return contact;
         }
-        return contact;
+        
     }
 
     // add contact details to the address book
-    addcontactDetails(name, email, mob, ldline, web, addr){
+    addContactDetails(name, email, mob, ldline, web, addr){
             let localdata= [];
             let contact = [];
             localdata = JSON.parse(localStorage.getItem('data'));
             let id;
-            if(!localdata || localdata==""){
-                $("#peopleList").append(`<h6>${"No contact Added."} </h6>`);
+            if(!localdata || localdata=="" || localdata==null){
                 id=1;
-            // localStorage.clear();
-            }
-            if(localdata){
+            }else{
                 contact = [...localdata];
                 id = localdata[localdata.length-1].id;
                 id++;
@@ -56,7 +53,7 @@ class Services  {
     }
     
     //delete contact from the list wuth the help of id
-    delete_contact(id){
+    deleteContact(id){
         let localdata= [];
         localdata = JSON.parse(localStorage.getItem('data'));
         let contact = localdata.find(p=>p.id === id);
@@ -65,18 +62,19 @@ class Services  {
             if(localdata){
                     let newLocaldata = localdata.filter((p) => p!=contact);
                     localStorage.setItem('data', JSON.stringify(newLocaldata));                    
-                    location.reload();
                     alert("Contact has been deleted.");
+                    location.reload();
             }else
             {
-                $("#peopleList").append(`<h6>${"No contact Added."} </h6>`);
+                return false;
+                // $("#peopleList").append(`<h6>${"No user contact Added."} </h6>`);
             }
                 
         }
     };
 
     //update contact with the help of id
-    update_contact_detail(id){
+    updateContactDetail(id){
         let localdata= [];
         localdata = JSON.parse(localStorage.getItem('data'));
         let contact = localdata.find(p=>p.id === id);
@@ -91,5 +89,4 @@ class Services  {
         localStorage.setItem('data',JSON.stringify(localdata));
         location.reload();
     }
-
 }

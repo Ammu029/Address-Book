@@ -75,10 +75,9 @@ section ul li h5{
     font-weight: 380;
     color: black;
 }
-/* section ul li h2{
-    font-weight: lighter;
-    font-family: sans-serif;
-} */
+section ul li h2{
+    font-weight: 400;
+}
 section ul li:hover{
     background-color: #DAE5E1;
     cursor: pointer;

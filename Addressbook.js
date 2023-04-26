@@ -1,6 +1,17 @@
 $(document).ready(function(){
     let ABService = new AddressBookService();
     var id;
+
+    // function initialView(){
+    //     $('#addContactPopup').hide();
+    //     $("#nameCheck").hide();
+    //     $("#emailCheck").hide();
+    //     $("#mobCheck").hide();
+    //     $("#ldlineCheck").hide();
+    //     $("#webCheck").hide();
+    //     $("#addrCheck").hide();
+    // }
+    //initialView();
     $('#addContactPopup').hide();
     $('#homePage').click(() => {
         $("#addContactPopup").hide();
@@ -46,29 +57,29 @@ $(document).ready(function(){
     });
     $("#submitContact").click(function(){
         
-        if(validate()){
+        if(validate() && validateEmail() && validateUsername() && validateMobile() && validateLandline() && validateWeb()){
             $("#addContactPopup").hide();
             $('.view-contact-details').hide();
         }
     })
 
     //validate name
-        $("#nameCheck").hide();
+       $("#nameCheck").hide();
         $("#formDetailName").change(validateUsername);
         function validateUsername() 
         {
+            let regex =/^[a-zA-Z][a-zA-Z\s]*$/;
             let usernameValue = $("#formDetailName").val();
             if (usernameValue == "" || usernameValue == " ") {
                 $("#nameCheck").show();
                 return false;
-            // } else if (usernameValue.length < 3 || usernameValue.length > 10) {
-            // $("#nameCheck").show();
-            // $("#nameCheck").html("**length of username must be between 3 and 10");
-            // usernameError = false;
-            // return false;
-            // } 
+            } else if (!regex.test(usernameValue)) {
+                $("#nameCheck").show();
+                $("#nameCheck").html("**Enter a valid Name");
+                return false;
             }else {
-            $("#nameCheck").hide();
+             $("#nameCheck").hide();
+             return true;
             }
         }
     
@@ -77,12 +88,20 @@ $(document).ready(function(){
         $("#formDetailEmail").change(validateEmail);
         function validateEmail() 
         {
+            let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             let emailValue = $("#formDetailEmail").val();
             if (emailValue == "" || emailValue == " ") {
                 $("#emailCheck").show();
+                $("#emailCheck").html("**Enter your email");
                 return false;
-            }else {
+            }else if(!regex.test(emailValue)){
+                 $("#emailCheck").show();
+                 $("#emailCheck").html("**Enter correct Email ID");
+                 return false;
+            }
+            else {
                  $("#emailCheck").hide();
+                 return true;
             }
         }
     
@@ -91,16 +110,20 @@ $(document).ready(function(){
         $("#formDetailMob").change(validateMobile);
         function validateMobile() 
         {
+            let regex = /^(0|91)?[6-9][0-9]{9}$/;
             let mobValue = $("#formDetailMob").val();
             if (mobValue == "" || mobValue == " ") {
                 $("#mobCheck").show();
+                $("#mobCheck").html("Enter your mobile number");
                 return false;
-            }else if(isNaN(mobValue)){
+            }else if(!regex.test(mobValue)){
                  $("#mobCheck").show();
-                 $("#mobCheck").html("**Enter numeric values only");
+                 $("#mobCheck").html("**Enter valid mobile number");
+                 return false;
             }
-            else {
+            else{
                  $("#mobCheck").hide();
+                 return true;
             }
         }
     
@@ -109,16 +132,20 @@ $(document).ready(function(){
         $("#formDetailLandline").change(validateLandline);
         function validateLandline() 
         {
+            let regex = /^(0|91)?[6-9][0-9]{9}$/;
             let ldlineValue = $("#formDetailLandline").val();
             if (ldlineValue == "" || ldlineValue == " ") {
                 $("#ldlineCheck").show();
+                $("#ldlineCheck").html("Enter your Landline number ");
                 return false;
             }
-            else if(isNaN(ldlineValue)){
+            else if(!regex.test(ldlineValue)){
                 $("#ldlineCheck").show();
-                $("#ldlineCheck").html("**Enter numeric values only");
+                $("#ldlineCheck").html("**Enter valid Landline number");
+                return false;
            }else {
                  $("#ldlineCheck").hide();
+                 return true;
             }
         }
     
@@ -127,12 +154,21 @@ $(document).ready(function(){
         $("#formDetailWeb").change(validateWeb);
         function validateWeb() 
         {
+            let regex = /(http(s)?:\\)?([\w-]+\.)+[\w-]+[.com|.in|.org]+(\[\?%&=]*)?/;
             let webValue = $("#formDetailWeb").val();
             if (webValue == "" || webValue == " ") {
                 $("#webCheck").show();
+                $("#webCheck").html("Enter your Website ");
                 return false;
-            }else {
+            }
+            else if(!regex.test(webValue)){
+                $("#webCheck").show();
+                $("#webCheck").html("**Enter valid url of the website");
+                return false;
+            }
+            else {
                  $("#webCheck").hide();
+                 return true;
             }
         }
     
@@ -147,6 +183,7 @@ $(document).ready(function(){
                 return false;
             }else {
                  $("#addrCheck").hide();
+                 return true;
             }
         }     
 
@@ -161,6 +198,7 @@ $(document).ready(function(){
             let address = $("#formDetailAddr").val();
     
             if(!name || !email  || !num  || !landline || !website || !address ){
+
                 alert("Please fill all the details");
                 return false;
             }
@@ -169,7 +207,7 @@ $(document).ready(function(){
 
     renderContactList();
     $('#submitContact').on('click', function (e) {  
-       if(validate()){
+       if(validate() && validateEmail() && validateUsername() && validateMobile() && validateLandline() && validateWeb()){
            e.preventDefault();
         
                 let name = $('#formDetailName').val();
@@ -181,6 +219,8 @@ $(document).ready(function(){
 
                 ABService.addContactDetails(name, email, mob, ldline, web, addr);
         }
+            //$("#submitContact").prop('disabled', true);
+        
     
     });
 
@@ -209,7 +249,8 @@ $(document).ready(function(){
         }
     }
     
-    $("#peopleList ul li").on('click',function(){          
+    $("#peopleList ul li").on('click',function(){    
+       // $(this).addClass('active').siblings().removeClass('active');    
             id = parseInt($(this).attr("id"));
             let contact = ABService.getContactById(id);
             $("#detail-contact").html(
@@ -307,7 +348,7 @@ $(document).ready(function(){
         let p = ABService.deleteContact(id);
 
         if(!p){
-         $("#peopleList").append(`<h6>${"No user contact Added."} </h6>`);
+         $("#peopleList").html(`<h6>${"No user contact Added."} </h6>`);
         }
          // const response = confirm("Are you sure you want to delete the contact?");
          // if (response) {

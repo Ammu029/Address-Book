@@ -40,7 +40,7 @@ nav img{
     width: 80%;
 }
 #contactContainer{
-    padding: 2%;
+    padding: 1.5%;
     display: flex;
     width: auto;
     display: grid;
@@ -57,7 +57,7 @@ nav img{
 #peopleList{
     color: #36332f;
     overflow: overlay;
-    height: 375px;
+    height: 345px;
 }
 section{
     margin-top: 15px
@@ -128,6 +128,7 @@ section ul{
     width: 100%; 
     height: 25px; 
     margin-top: 1%;
+    font-weight: 400;
 }
 .mob{
     width: 47%;
@@ -165,7 +166,7 @@ section ul{
     display: grid;
     margin-top: 5%;
     justify-content: space-evenly;
-    grid-template-columns: 60% 20% 20%;
+    grid-template-columns: 60% 10% 10%;
     /* font-family: sans-serif;
     font-weight: lighter; */
 }
@@ -174,6 +175,7 @@ section ul{
     font-size: 20px;
     margin-bottom: 4%;
     font-weight: 700;
+    margin-top: -10px;
 }
 #email{
     margin-bottom: 3%;
@@ -216,7 +218,7 @@ section ul{
 
 ::-webkit-input-placeholder{
     padding: 5px;
-    font-weight: lighter;
+    font-weight: 500;
 }
 
 
@@ -233,4 +235,8 @@ section ul{
     .add_contact_popup{ 
     grid-template-columns: auto auto;  
     }
+}
+
+.active{
+    background-color:  #DAE5E1;
 }
